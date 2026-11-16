@@ -1,0 +1,17 @@
+{
+  "name": "parchis-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Juego web de Parchís con partidas locales, contra la computadora y salas en línea.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}

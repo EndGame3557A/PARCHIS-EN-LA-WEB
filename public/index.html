@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101a22">
+    <meta name="description" content="Una nueva forma de jugar Parchís: en la misma mesa, contra la computadora o con amigos en línea.">
+    <title>Parchís — La mesa está lista</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <div class="page-glow page-glow-one"></div>
+    <div class="page-glow page-glow-two"></div>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Parchís, inicio">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>PARCHÍS<span class="brand-period">.</span><small class="brand-subtitle">DEL PARCHE</small></span>
+        </a>
+        <div class="topbar-right">
+          <span class="status-pill"><span class="status-dot"></span> La mesa está lista</span>
+          <button id="help-button" class="icon-button" type="button" aria-label="Ver reglas" title="Ver reglas">?</button>
+        </div>
+      </header>
+
+      <main>
+        <section id="home-screen" class="home-screen">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> EL PARCHÍS DEL PARCHE</p>
+            <h1>El parche<br>se arma.<br><span>La suerte rueda.</span></h1>
+            <p class="hero-description">Reta a tus amigos en el clásico o juega La Previa: una carrera rápida para decidir quién invita la próxima.</p>
+            <div class="hero-proof">
+              <span class="avatar-stack" aria-hidden="true"><i>V</i><i>R</i><i>M</i></span>
+              <span>Una mesa. Tu parche.<br><strong>La revancha va por cuenta de todos.</strong></span>
+            </div>
+          </div>
+
+          <div class="mode-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">ELIGE FORMATO Y PARTIDA</p>
+                <h2>¿Cómo quieres jugar?</h2>
+              </div>
+              <span class="step-badge">01 <span>/ 02</span></span>
+            </div>
+            <div class="format-picker" role="group" aria-label="Formato de juego">
+              <button class="format-button selected" type="button" data-ruleset="classic" aria-pressed="true">
+                <span class="format-mark">♟</span>
+                <span><strong>Clásico</strong><small>La partida de siempre</small></span>
+              </button>
+              <button class="format-button" type="button" data-ruleset="previa" aria-pressed="false">
+                <span class="format-mark previa-mark">⚡</span>
+                <span><strong>La Previa</strong><small>Rápida · una ficha por equipo</small></span>
+              </button>
+            </div>
+            <p id="format-description" class="format-description">Cuatro fichas por equipo, salida con dobles y recorrido completo.</p>
+            <div class="mode-list">
+              <button class="mode-card" type="button" data-mode="local">
+                <span class="mode-icon icon-local" aria-hidden="true"><span>♟</span><span>♟</span></span>
+                <span class="mode-text"><strong>En la misma mesa</strong><small>Arma el parche en un solo dispositivo</small></span>
+                <span class="mode-arrow" aria-hidden="true">↗</span>
+              </button>
+              <button class="mode-card" type="button" data-mode="computer">
+                <span class="mode-icon icon-computer" aria-hidden="true">✦</span>
+                <span class="mode-text"><strong>Contra la computadora</strong><small>Practica antes de retar a tu parche</small></span>
+                <span class="mode-arrow" aria-hidden="true">↗</span>
+              </button>
+              <button class="mode-card mode-card-online" type="button" data-mode="online">
+                <span class="mode-icon icon-online" aria-hidden="true">⌁</span>
+                <span class="mode-text"><strong>Jugar en línea</strong><small>Comparte el enlace y entren todos a la mesa</small></span>
+                <span class="mode-arrow" aria-hidden="true">↗</span>
+              </button>
+            </div>
+            <p class="panel-footnote"><span aria-hidden="true">✳</span> Gratis para jugar · Sin instalar nada</p>
+          </div>
+          <div class="hero-orbit" aria-hidden="true">
+            <div class="orbit-ring"></div><div class="orbit-center">P</div>
+            <span class="orbit-token token-one"></span><span class="orbit-token token-two"></span>
+            <span class="orbit-token token-three"></span><span class="orbit-token token-four"></span>
+          </div>
+        </section>
+
+        <section id="online-screen" class="online-screen hidden">
+          <button class="back-button" id="back-home" type="button">← Volver</button>
+          <div class="online-card">
+            <div class="online-heading">
+              <span class="online-icon">⌁</span>
+              <p class="eyebrow">MESA PRIVADA</p>
+              <h1>Juega con tu gente.</h1>
+              <p>Crea una sala y comparte el código. Tus amigos se unen desde cualquier navegador.</p>
+            </div>
+            <label class="field-label" for="player-name">Tu nombre</label>
+            <input id="player-name" class="text-field" maxlength="18" autocomplete="nickname" value="Jugador">
+            <div class="online-actions">
+              <button id="create-room" class="primary-button" type="button">Crear una sala <span>↗</span></button>
+              <div class="join-row">
+                <input id="room-code" class="text-field code-field" maxlength="6" placeholder="CÓDIGO" aria-label="Código de sala" autocomplete="off">
+                <button id="join-room" class="secondary-button" type="button">Unirme</button>
+              </div>
+            </div>
+            <p id="online-error" class="inline-error" role="alert"></p>
+            <p class="online-note">Para jugar en línea, todos deben abrir esta página y estar conectados al mismo servidor.</p>
+          </div>
+        </section>
+
+        <section id="lobby-screen" class="lobby-screen hidden">
+          <div class="lobby-card">
+            <button class="back-button" id="leave-lobby" type="button">← Salir de la sala</button>
+            <p class="eyebrow">SALA PRIVADA</p>
+            <h1>Comparte el código.</h1>
+            <div class="room-code-display">
+              <span id="lobby-code">------</span>
+              <button id="copy-room" type="button" aria-label="Copiar enlace de invitación">Copiar enlace</button>
+            </div>
+            <p id="lobby-status" class="lobby-status">Esperando jugadores…</p>
+            <div id="lobby-players" class="lobby-players"></div>
+            <button id="start-online" class="primary-button start-button hidden" type="button">Empezar partida <span>→</span></button>
+            <p id="lobby-hint" class="online-note">Se necesitan al menos dos jugadores.</p>
+          </div>
+        </section>
+
+        <section id="game-screen" class="game-screen hidden">
+          <div class="game-topline">
+            <div>
+              <button id="game-home" class="back-button" type="button">← Salir de la partida</button>
+              <h1>La mesa de juego</h1>
+            </div>
+            <span id="game-mode-label" class="game-mode-label">PARTIDA LOCAL</span>
+          </div>
+          <div class="game-layout">
+            <div class="board-card">
+              <div class="board-header">
+                <div class="board-title"><span class="live-dot"></span><span id="board-caption">PARTIDA EN CURSO</span></div>
+                <span id="room-badge" class="room-badge hidden"></span>
+              </div>
+              <svg id="board" class="board" viewBox="0 0 640 640" role="img" aria-label="Tablero de Parchís"></svg>
+              <div class="board-legend"><span>✦ Casilla segura</span><span>⌂ Meta del equipo</span></div>
+            </div>
+            <aside class="game-sidebar">
+              <section class="turn-card">
+                <p class="eyebrow">TURNO ACTUAL</p>
+                <div id="turn-player" class="turn-player"></div>
+                <p id="game-message" class="game-message" aria-live="polite">Tira los dados para comenzar.</p>
+                <div id="dice-display" class="dice-display" aria-label="Resultado de los dados">
+                  <span class="die">–</span><span class="die">–</span>
+                </div>
+                <button id="roll-button" class="primary-button roll-button" type="button">Tirar los dados <span>↗</span></button>
+                <button id="pass-button" class="secondary-button pass-button hidden" type="button">Pasar turno</button>
+                <div id="move-list" class="move-list"></div>
+              </section>
+              <section class="players-card">
+                <div class="players-heading"><h2>En la partida</h2><span id="player-count">4 equipos</span></div>
+                <div id="players-list" class="players-list"></div>
+              </section>
+              <details class="rules-card">
+                <summary>Reglas de esta mesa <span>＋</span></summary>
+                <ul id="rules-list">
+                  <li>Se juega con dos dados y se puede sumar o repartir la jugada.</li>
+                  <li>Las fichas salen con dobles; hay tres intentos si todas están en casa.</li>
+                  <li>La llegada a la meta requiere el número exacto.</li>
+                  <li>Las casillas seguras protegen; una ficha rival sola puede volver a casa.</li>
+                  <li>El tercer doble seguido lleva a casa la ficha más avanzada.</li>
+                </ul>
+              </details>
+            </aside>
+          </div>
+        </section>
+      </main>
+      <footer class="footer"><span>Hecho para que la próxima partida nunca quede pendiente.</span><span>© 2026 · PARCHÍS</span></footer>
+    </div>
+    <div id="winner-overlay" class="winner-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="winner-title">
+      <div class="winner-card">
+        <span class="winner-sparkle">✳</span>
+        <p class="eyebrow">PARTIDA TERMINADA</p>
+        <h2 id="winner-title">¡Tenemos ganador!</h2>
+        <p id="winner-message"></p>
+        <div class="winner-actions">
+          <button id="share-result" class="secondary-button" type="button">Compartir el reto <span>↗</span></button>
+          <button id="winner-home" class="primary-button" type="button">Volver al inicio <span>→</span></button>
+        </div>
+      </div>
+    </div>
+    <div id="rules-dialog" class="winner-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+      <div class="winner-card rules-dialog-card">
+        <button id="close-rules" class="dialog-close" type="button" aria-label="Cerrar">×</button>
+        <p class="eyebrow">GUÍA RÁPIDA</p>
+        <h2 id="rules-title">Reglas claras. Buenas revanchas.</h2>
+        <ul>
+          <li><strong>Clásico:</strong> cuatro fichas por equipo, dobles para salir y recorrido completo.</li>
+          <li><strong>La Previa:</strong> una ficha por equipo, salida directa y cada dado mueve el doble.</li>
+          <li>En ambos formatos, las casillas seguras protegen y la meta requiere el número exacto.</li>
+          <li>Una ficha rival puede ser capturada en las casillas no seguras.</li>
+        </ul>
+        <button id="rules-ok" class="secondary-button" type="button">¡Entendido!</button>
+      </div>
+    </div>
+  </body>
+</html>
